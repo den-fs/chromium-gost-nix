@@ -53,11 +53,11 @@
 
 stdenv.mkDerivation rec {
   pname = "chromium-gost";
-  version = "123.0.6312.86";
+  version = "144.0.7559.96";
 
   src = fetchurl {
     url = "https://github.com/deemru/Chromium-Gost/releases/download/${version}/chromium-gost-${version}-linux-amd64.deb";
-    sha256 = "sha256-MRtBThsUaGJ25htkqeunOO4ftLT2g3QZTtr7NIitxdc=";
+    sha256 = "sha256:7f82282e78c207c3f284272b2b1e626ab83374aede521213baca889cb5ae8e1d";
   };
 
   nativeBuildInputs = [
