@@ -2,6 +2,7 @@
 , lib
 , fetchurl
 , autoPatchelfHook
+, makeWrapper
 , wrapGAppsHook
 , flac
 , gnome2
@@ -64,6 +65,7 @@ stdenv.mkDerivation rec {
     autoPatchelfHook
     qt6.wrapQtAppsHook
     wrapGAppsHook
+    makeWrapper
   ];
 
   buildInputs = [
@@ -135,6 +137,11 @@ stdenv.mkDerivation rec {
     for size in "''${sizes[@]}"; do
       ln -s "$out/opt/${pname}/product_logo_$size.png" "$out/share/icons/hicolor/''${size}x''${size}/apps/${pname}.png"
     done
+  '';
+  
+  postFixup = ''
+    wrapProgram $out/bin/${pname} \
+      --add-flags "--user-data-dir=\$HOME/.config/chromium-gost"
   '';
 
   runtimeDependencies = map lib.getLib [
